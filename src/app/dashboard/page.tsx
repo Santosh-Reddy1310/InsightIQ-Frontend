@@ -74,13 +74,13 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
+          <h1 className="text-3xl font-bold text-black dark:text-white">Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">
             Upload your data and get AI-powered insights instantly
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+          <Badge variant="outline" className="bg-white dark:bg-black text-black dark:text-white border-gray-300 dark:border-gray-700">
             <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
             System Online
           </Badge>
@@ -89,60 +89,60 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0">
+        <Card className="bg-black dark:bg-white text-white dark:text-black border-0">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-100 text-sm font-medium">Total Uploads</p>
+                <p className="text-gray-300 dark:text-gray-700 text-sm font-medium">Total Uploads</p>
                 <p className="text-2xl font-bold">12</p>
               </div>
-              <Upload className="w-8 h-8 text-blue-200" />
+              <Upload className="w-8 h-8 text-gray-300 dark:text-gray-700" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white border-0">
+        <Card className="bg-gray-900 dark:bg-gray-100 text-white dark:text-black border-0">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-purple-100 text-sm font-medium">AI Insights</p>
+                <p className="text-gray-300 dark:text-gray-700 text-sm font-medium">AI Insights</p>
                 <p className="text-2xl font-bold">47</p>
               </div>
-              <BrainCog className="w-8 h-8 text-purple-200" />
+              <BrainCog className="w-8 h-8 text-gray-300 dark:text-gray-700" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white border-0">
+        <Card className="bg-gray-800 dark:bg-gray-200 text-white dark:text-black border-0">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-green-100 text-sm font-medium">Models Trained</p>
+                <p className="text-gray-300 dark:text-gray-700 text-sm font-medium">Models Trained</p>
                 <p className="text-2xl font-bold">8</p>
               </div>
-              <TrendingUp className="w-8 h-8 text-green-200" />
+              <TrendingUp className="w-8 h-8 text-gray-300 dark:text-gray-700" />
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* File Upload */}
-      <Card className="border-2 border-dashed border-slate-300 dark:border-slate-600 hover:border-blue-400 dark:hover:border-blue-500 transition-colors">
+      <Card className="border-2 border-dashed border-gray-300 dark:border-gray-700 hover:border-black dark:hover:border-white transition-colors">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <Upload className="w-5 h-5 text-blue-600" />
+            <Upload className="w-5 h-5 text-black dark:text-white" />
             <span>Upload Dataset</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-center w-full">
-            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-slate-300 border-dashed rounded-lg cursor-pointer bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 dark:border-slate-600">
+            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 dark:border-gray-700 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <Upload className="w-8 h-8 mb-4 text-slate-500 dark:text-slate-400" />
-                <p className="mb-2 text-sm text-slate-500 dark:text-slate-400">
+                <Upload className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" />
+                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                   <span className="font-semibold">Click to upload</span> or drag and drop
                 </p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">CSV or PDF files</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">CSV or PDF files</p>
               </div>
               <Input 
                 type="file" 
@@ -154,12 +154,12 @@ export default function DashboardPage() {
           </div>
           
           {file && (
-            <div className="flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
               <div className="flex items-center space-x-2">
-                <FileCheck2 className="w-4 h-4 text-blue-600" />
-                <span className="text-sm font-medium text-blue-900 dark:text-blue-100">{file.name}</span>
+                <FileCheck2 className="w-4 h-4 text-black dark:text-white" />
+                <span className="text-sm font-medium text-black dark:text-white">{file.name}</span>
               </div>
-              <Button onClick={handleUpload} size="sm">
+              <Button onClick={handleUpload} size="sm" className="bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
                 Upload
               </Button>
             </div>
@@ -178,7 +178,7 @@ export default function DashboardPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
-            <Zap className="w-5 h-5 text-yellow-600" />
+            <Zap className="w-5 h-5 text-black dark:text-white" />
             <span>AI Analysis Pipeline</span>
           </CardTitle>
         </CardHeader>
@@ -218,7 +218,7 @@ export default function DashboardPage() {
             
             <Button 
               onClick={trainModel} 
-              className="h-12 flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="h-12 flex items-center space-x-2 bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
               disabled={!status.uploaded}
             >
               <TrendingUp className="w-4 h-4" />
@@ -227,10 +227,10 @@ export default function DashboardPage() {
           </div>
 
           {accuracy && (
-            <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+            <div className="p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
               <div className="flex items-center space-x-2">
                 <TrendingUp className="w-5 h-5 text-green-600" />
-                <span className="font-semibold text-green-900 dark:text-green-100">
+                <span className="font-semibold text-black dark:text-white">
                   Model Accuracy: {(accuracy * 100).toFixed(2)}%
                 </span>
               </div>
@@ -241,16 +241,16 @@ export default function DashboardPage() {
 
       {/* AI Answer */}
       {aiAnswer && (
-        <Card className="border-l-4 border-l-blue-500">
+        <Card className="border-l-4 border-l-black dark:border-l-white">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <BrainCog className="w-5 h-5 text-blue-600" />
+              <BrainCog className="w-5 h-5 text-black dark:text-white" />
               <span>AI Insight</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
-              <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{aiAnswer}</p>
+            <div className="p-4 bg-gray-100 dark:bg-gray-900 rounded-lg">
+              <p className="text-black dark:text-white leading-relaxed">{aiAnswer}</p>
             </div>
           </CardContent>
         </Card>

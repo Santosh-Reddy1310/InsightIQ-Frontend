@@ -97,10 +97,10 @@ export default function PredictForm() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+        <h1 className="text-3xl font-bold text-black dark:text-white mb-2">
           AI Health Prediction
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-gray-600 dark:text-gray-400">
           Enter your health metrics to get an AI-powered diabetes risk assessment
         </p>
       </div>
@@ -110,14 +110,14 @@ export default function PredictForm() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Brain className="w-5 h-5 text-blue-600" />
+              <Brain className="w-5 h-5 text-black dark:text-white" />
               <span>Health Metrics</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {Object.entries(initialForm).map(([field, _]) => (
               <div key={field} className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label className="text-sm font-medium text-black dark:text-white">
                   {fieldLabels[field as keyof typeof fieldLabels]}
                 </label>
                 <Input
@@ -133,12 +133,12 @@ export default function PredictForm() {
 
             <Button 
               onClick={handleSubmit} 
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-12"
+              className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 h-12"
               disabled={!isFormValid || loading}
             >
               {loading ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  <div className="w-4 h-4 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin mr-2"></div>
                   Analyzing...
                 </>
               ) : (
@@ -156,7 +156,7 @@ export default function PredictForm() {
           {result && (
             <>
               {result.error ? (
-                <Card className="border-red-200 dark:border-red-800">
+                <Card className="border-red-500">
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-2 text-red-600">
                       <AlertCircle className="w-5 h-5" />
@@ -167,7 +167,7 @@ export default function PredictForm() {
               ) : (
                 <>
                   {/* Prediction Result */}
-                  <Card className={`border-2 ${result.prediction === 1 ? 'border-red-200 dark:border-red-800' : 'border-green-200 dark:border-green-800'}`}>
+                  <Card className={`border-2 ${result.prediction === 1 ? 'border-red-500' : 'border-green-500'}`}>
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-2">
                         {result.prediction === 1 ? (
@@ -191,7 +191,7 @@ export default function PredictForm() {
                           {(Math.max(...result.probabilities) * 100).toFixed(1)}% Confidence
                         </p>
                         
-                        <p className="text-slate-600 dark:text-slate-400">
+                        <p className="text-gray-600 dark:text-gray-400">
                           Based on your health information, the AI model predicts you
                           {result.prediction === 1 ? ' have a high risk' : ' have a low risk'} of diabetes.
                         </p>
@@ -206,7 +206,7 @@ export default function PredictForm() {
                     <CardContent className="p-6">
                       <div className="text-center space-y-4">
                         <h3 className="text-lg font-semibold">Get Detailed Report</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm">
+                        <p className="text-gray-600 dark:text-gray-400 text-sm">
                           Download a comprehensive PDF report with your prediction results and recommendations.
                         </p>
                         <Button 
@@ -226,13 +226,13 @@ export default function PredictForm() {
           )}
 
           {!result && (
-            <Card className="border-dashed border-2 border-slate-300 dark:border-slate-600">
+            <Card className="border-dashed border-2 border-gray-300 dark:border-gray-700">
               <CardContent className="p-12 text-center">
-                <Brain className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                <Brain className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-400 mb-2">
                   Ready for Analysis
                 </h3>
-                <p className="text-slate-500 dark:text-slate-500">
+                <p className="text-gray-500 dark:text-gray-500">
                   Fill in your health metrics and click "Predict Risk" to get your AI-powered assessment.
                 </p>
               </CardContent>

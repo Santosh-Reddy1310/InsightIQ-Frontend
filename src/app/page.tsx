@@ -2,7 +2,7 @@ import HeroSection from '@/components/HeroSection'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <main className="min-h-screen bg-white dark:bg-black">
       <HeroSection />
     </main>
   )

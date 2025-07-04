@@ -41,11 +41,11 @@ export default function InsightChat() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2 flex items-center justify-center space-x-2">
-          <Sparkles className="w-8 h-8 text-purple-600" />
+        <h1 className="text-3xl font-bold text-black dark:text-white mb-2 flex items-center justify-center space-x-2">
+          <Sparkles className="w-8 h-8 text-black dark:text-white" />
           <span>AI Data Assistant</span>
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-gray-600 dark:text-gray-400">
           Ask questions about your dataset and get intelligent insights powered by AI
         </p>
       </div>
@@ -56,13 +56,13 @@ export default function InsightChat() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <FileText className="w-5 h-5 text-blue-600" />
+                <FileText className="w-5 h-5 text-black dark:text-white" />
                 <span>Dataset Information</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label className="text-sm font-medium text-black dark:text-white">
                   Dataset Filename
                 </label>
                 <Input 
@@ -74,7 +74,7 @@ export default function InsightChat() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                <label className="text-sm font-medium text-black dark:text-white">
                   Your Question
                 </label>
                 <Textarea
@@ -87,13 +87,13 @@ export default function InsightChat() {
               </div>
 
               <Button 
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 h-12" 
+                className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 h-12" 
                 onClick={handleSubmit} 
                 disabled={loading || !file || !question}
               >
                 {loading ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    <div className="w-4 h-4 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin mr-2"></div>
                     Analyzing...
                   </>
                 ) : (
@@ -117,7 +117,7 @@ export default function InsightChat() {
                   <button
                     key={index}
                     onClick={() => setQuestion(q)}
-                    className="w-full text-left p-3 text-sm bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                    className="w-full text-left p-3 text-sm bg-gray-100 dark:bg-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors border border-gray-200 dark:border-gray-800"
                   >
                     {q}
                   </button>
@@ -130,29 +130,29 @@ export default function InsightChat() {
         {/* Response Section */}
         <div className="space-y-6">
           {answer ? (
-            <Card className="border-l-4 border-l-purple-500">
+            <Card className="border-l-4 border-l-black dark:border-l-white">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <MessageSquare className="w-5 h-5 text-purple-600" />
+                  <MessageSquare className="w-5 h-5 text-black dark:text-white" />
                   <span>AI Response</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
-                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">
+                <div className="p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+                  <p className="text-black dark:text-white leading-relaxed whitespace-pre-wrap">
                     {answer}
                   </p>
                 </div>
               </CardContent>
             </Card>
           ) : (
-            <Card className="border-dashed border-2 border-slate-300 dark:border-slate-600">
+            <Card className="border-dashed border-2 border-gray-300 dark:border-gray-700">
               <CardContent className="p-12 text-center">
-                <Sparkles className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                <Sparkles className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-400 mb-2">
                   Ready to Help
                 </h3>
-                <p className="text-slate-500 dark:text-slate-500">
+                <p className="text-gray-500 dark:text-gray-500">
                   Enter your dataset filename and ask a question to get started with AI-powered insights.
                 </p>
               </CardContent>

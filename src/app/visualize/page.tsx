@@ -8,10 +8,10 @@ export default function VisualizePage() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+        <h1 className="text-3xl font-bold text-black dark:text-white mb-2">
           Data Visualization
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-gray-600 dark:text-gray-400">
           Interactive charts and graphs to explore your data insights
         </p>
       </div>
@@ -21,15 +21,15 @@ export default function VisualizePage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <BarChart3 className="w-5 h-5 text-blue-600" />
+              <BarChart3 className="w-5 h-5 text-black dark:text-white" />
               <span>Feature Distribution</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-slate-50 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+            <div className="h-64 bg-gray-100 dark:bg-gray-900 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-800">
               <div className="text-center">
-                <BarChart3 className="w-12 h-12 text-slate-400 mx-auto mb-2" />
-                <p className="text-slate-500">Chart will appear here</p>
+                <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+                <p className="text-gray-500">Chart will appear here</p>
               </div>
             </div>
           </CardContent>
@@ -38,15 +38,15 @@ export default function VisualizePage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <PieChart className="w-5 h-5 text-purple-600" />
+              <PieChart className="w-5 h-5 text-black dark:text-white" />
               <span>Outcome Distribution</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-slate-50 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+            <div className="h-64 bg-gray-100 dark:bg-gray-900 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-800">
               <div className="text-center">
-                <PieChart className="w-12 h-12 text-slate-400 mx-auto mb-2" />
-                <p className="text-slate-500">Chart will appear here</p>
+                <PieChart className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+                <p className="text-gray-500">Chart will appear here</p>
               </div>
             </div>
           </CardContent>
@@ -55,15 +55,15 @@ export default function VisualizePage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <TrendingUp className="w-5 h-5 text-green-600" />
+              <TrendingUp className="w-5 h-5 text-black dark:text-white" />
               <span>Correlation Matrix</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-slate-50 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+            <div className="h-64 bg-gray-100 dark:bg-gray-900 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-800">
               <div className="text-center">
-                <TrendingUp className="w-12 h-12 text-slate-400 mx-auto mb-2" />
-                <p className="text-slate-500">Chart will appear here</p>
+                <TrendingUp className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+                <p className="text-gray-500">Chart will appear here</p>
               </div>
             </div>
           </CardContent>
@@ -72,15 +72,15 @@ export default function VisualizePage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <BarChart3 className="w-5 h-5 text-orange-600" />
+              <BarChart3 className="w-5 h-5 text-black dark:text-white" />
               <span>Model Performance</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-slate-50 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+            <div className="h-64 bg-gray-100 dark:bg-gray-900 rounded-lg flex items-center justify-center border border-gray-200 dark:border-gray-800">
               <div className="text-center">
-                <BarChart3 className="w-12 h-12 text-slate-400 mx-auto mb-2" />
-                <p className="text-slate-500">Chart will appear here</p>
+                <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+                <p className="text-gray-500">Chart will appear here</p>
               </div>
             </div>
           </CardContent>
