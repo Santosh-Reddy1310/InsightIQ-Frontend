@@ -4,7 +4,10 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import ConfidenceChart from './ConfidenceChart'
+import { Brain, Download, AlertCircle, CheckCircle } from 'lucide-react'
 
 const initialForm = {
   Pregnancies: '',
@@ -17,15 +20,28 @@ const initialForm = {
   Age: '',
 }
 
+const fieldLabels = {
+  Pregnancies: 'Number of Pregnancies',
+  Glucose: 'Glucose Level',
+  BloodPressure: 'Blood Pressure',
+  SkinThickness: 'Skin Thickness',
+  Insulin: 'Insulin Level',
+  BMI: 'Body Mass Index',
+  DiabetesPedigreeFunction: 'Diabetes Pedigree Function',
+  Age: 'Age',
+}
+
 export default function PredictForm() {
   const [form, setForm] = useState(initialForm)
   const [result, setResult] = useState<null | any>(null)
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async () => {
+    setLoading(true)
     try {
       const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE}/predict`, {
         file: 'diabetes.csv',
@@ -39,6 +55,8 @@ export default function PredictForm() {
     } catch (err) {
       console.error(err)
       setResult({ error: 'Prediction failed' })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -74,52 +92,154 @@ export default function PredictForm() {
     }
   }
 
+  const isFormValid = Object.values(form).every(value => value.trim() !== '')
+
   return (
-    <div className="space-y-6 max-w-xl mx-auto">
-      <h2 className="text-2xl font-bold flex items-center gap-2">
-        🔮 Predict Diabetes
-      </h2>
+    <div className="space-y-8">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+          AI Health Prediction
+        </h1>
+        <p className="text-slate-600 dark:text-slate-400">
+          Enter your health metrics to get an AI-powered diabetes risk assessment
+        </p>
+      </div>
 
-      {Object.keys(initialForm).map((field) => (
-        <div key={field}>
-          <label className="block font-semibold">{field}</label>
-          <Input
-            type="number"
-            name={field}
-            value={form[field as keyof typeof form]}
-            onChange={handleChange}
-          />
-        </div>
-      ))}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Input Form */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Brain className="w-5 h-5 text-blue-600" />
+              <span>Health Metrics</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {Object.entries(initialForm).map(([field, _]) => (
+              <div key={field} className="space-y-2">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                  {fieldLabels[field as keyof typeof fieldLabels]}
+                </label>
+                <Input
+                  type="number"
+                  name={field}
+                  value={form[field as keyof typeof form]}
+                  onChange={handleChange}
+                  placeholder={`Enter ${fieldLabels[field as keyof typeof fieldLabels].toLowerCase()}`}
+                  className="w-full"
+                />
+              </div>
+            ))}
 
-      <Button onClick={handleSubmit} className="w-full">🔍 Predict</Button>
+            <Button 
+              onClick={handleSubmit} 
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-12"
+              disabled={!isFormValid || loading}
+            >
+              {loading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  Analyzing...
+                </>
+              ) : (
+                <>
+                  <Brain className="w-4 h-4 mr-2" />
+                  Predict Risk
+                </>
+              )}
+            </Button>
+          </CardContent>
+        </Card>
 
-      {result && (
-        <div className="mt-6 p-4 border rounded bg-muted space-y-4">
-          {result.error ? (
-            <p className="text-red-500">{result.error}</p>
-          ) : (
+        {/* Results */}
+        <div className="space-y-6">
+          {result && (
             <>
-              <p className="text-lg font-bold flex items-center gap-2">
-                {result.prediction === 1 ? '🔴 Diabetic' : '✅ Not Diabetic'}
-              </p>
-              <p>Confidence: {(Math.max(...result.probabilities) * 100).toFixed(2)}%</p>
+              {result.error ? (
+                <Card className="border-red-200 dark:border-red-800">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-2 text-red-600">
+                      <AlertCircle className="w-5 h-5" />
+                      <span className="font-medium">{result.error}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : (
+                <>
+                  {/* Prediction Result */}
+                  <Card className={`border-2 ${result.prediction === 1 ? 'border-red-200 dark:border-red-800' : 'border-green-200 dark:border-green-800'}`}>
+                    <CardHeader>
+                      <CardTitle className="flex items-center space-x-2">
+                        {result.prediction === 1 ? (
+                          <AlertCircle className="w-5 h-5 text-red-600" />
+                        ) : (
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        )}
+                        <span>Prediction Result</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="text-center">
+                        <Badge 
+                          variant={result.prediction === 1 ? 'destructive' : 'default'}
+                          className="text-lg px-4 py-2 mb-4"
+                        >
+                          {result.prediction === 1 ? 'High Risk' : 'Low Risk'}
+                        </Badge>
+                        
+                        <p className="text-2xl font-bold mb-2">
+                          {(Math.max(...result.probabilities) * 100).toFixed(1)}% Confidence
+                        </p>
+                        
+                        <p className="text-slate-600 dark:text-slate-400">
+                          Based on your health information, the AI model predicts you
+                          {result.prediction === 1 ? ' have a high risk' : ' have a low risk'} of diabetes.
+                        </p>
+                      </div>
 
-              <ConfidenceChart prob={result.probabilities} />
+                      <ConfidenceChart prob={result.probabilities} />
+                    </CardContent>
+                  </Card>
 
-              <p className="text-sm mt-2 text-purple-700">
-                🧠 Based on your health information, the prediction is that you
-                {result.prediction === 1 ? ' have' : ' do not have'} diabetes,
-                with a {(Math.max(...result.probabilities) * 100).toFixed(0)}% confidence level.
-              </p>
-
-              <Button onClick={handleDownloadReport} className="w-full bg-green-600 hover:bg-green-700">
-                📄 Download PDF Report
-              </Button>
+                  {/* Download Report */}
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="text-center space-y-4">
+                        <h3 className="text-lg font-semibold">Get Detailed Report</h3>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm">
+                          Download a comprehensive PDF report with your prediction results and recommendations.
+                        </p>
+                        <Button 
+                          onClick={handleDownloadReport} 
+                          variant="outline"
+                          className="w-full"
+                        >
+                          <Download className="w-4 h-4 mr-2" />
+                          Download PDF Report
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </>
+              )}
             </>
           )}
+
+          {!result && (
+            <Card className="border-dashed border-2 border-slate-300 dark:border-slate-600">
+              <CardContent className="p-12 text-center">
+                <Brain className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                  Ready for Analysis
+                </h3>
+                <p className="text-slate-500 dark:text-slate-500">
+                  Fill in your health metrics and click "Predict Risk" to get your AI-powered assessment.
+                </p>
+              </CardContent>
+            </Card>
+          )}
         </div>
-      )}
+      </div>
     </div>
   )
 }
